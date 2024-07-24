@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export const ProjectItem = ({
@@ -6,20 +7,21 @@ export const ProjectItem = ({
   link,
   collaborators,
   imgUrl,
+  onClick,
 }) => {
   return (
-    <div className="mx-5 max-w-[30%]">
+    <div onClick={onClick} className="mx-5 max-w-[30%] cursor-pointer">
       <div className="bg-[#f9f9ff]">
         <div className="relative overflow-hidden">
-          <img src={imgUrl} alt="" />
+          <Image src={`/${imgUrl}`} width={350} height={200} alt="" />
         </div>
-        <div className="px-6 py-8">
+        <div className="px-6 py-4">
           <h4 className="mb-3 text-xl font-bold">
             <a href={link}>{name}</a>
           </h4>
           <p>{description}</p>
           <div className="mt-4">
-            <div>
+            <div className="flex flex-wrap gap-1">
               {collaborators.map((collaborator, idx) => (
                 <div key={idx}>
                   <a
@@ -27,10 +29,10 @@ export const ProjectItem = ({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
+                    <Image
                       className="rounded-full"
-                      width="50"
-                      height="50"
+                      width={40}
+                      height={40}
                       src={collaborator.avatar}
                       alt={collaborator.fullName}
                     />
